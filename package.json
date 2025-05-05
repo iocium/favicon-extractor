@@ -15,7 +15,8 @@
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc"
+    "docs": "typedoc",
+    "changelog": "auto-changelog -p"
   },
   "keywords": [
     "favicon",
@@ -43,6 +44,7 @@
     "@cloudflare/workers-types": "^4.20250505.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.3",
+    "auto-changelog": "^2.5.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.3.2",
     "tslib": "^2.8.1",
