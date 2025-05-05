@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "exclude": ["**/node_modules/**"],
+  "out": "docs",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "includeVersion": true,
+  "readme": "README.md",
+  "tsconfig": "tsconfig.json"
+}
