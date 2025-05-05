@@ -17,6 +17,26 @@
     "test:coverage": "jest --coverage",
     "docs": "typedoc"
   },
+  "keywords": [
+    "favicon",
+    "icon",
+    "apple-touch-icon",
+    "android-icon",
+    "web manifest",
+    "web app icons",
+    "favicon extractor",
+    "html icon parser",
+    "favicon scraper",
+    "favicon fetcher",
+    "manifest.json",
+    "html parser",
+    "meta icon",
+    "seo",
+    "cloudflare workers",
+    "typed",
+    "typescript",
+    "headless browser alternative"
+  ],
   "author": "Iocium",
   "license": "MIT",
   "devDependencies": {
