@@ -297,5 +297,73 @@ describe("FaviconExtractor", () => {
     await expect(
       extractor.fetchAndExtract("https://example.com")
     ).rejects.toThrow("Failed to fetch URL: https://example.com");
+  });
+  
+  it("getLargestIconsByMimeType handles icons with no size", () => {
+    const icons = [
+      { url: "https://a.com/a.png", mimeType: "image/png" }, // no size
+      { url: "https://a.com/b.png", size: "128x128", mimeType: "image/png" }
+    ];
+    const result = extractor.getLargestIconsByMimeType(icons as any);
+    expect(result.length).toBe(1);
+  });
+
+  it("linkHandler ignores <link> without rel or href", () => {
+    const el = {
+      getAttribute: (name: string) => (name === "rel" ? null : null)
+    };
+    extractor["linkHandler"](el as any);
+    expect(extractor["icons"].length).toBe(0);
+  });
+
+  it("linkHandler stores manifest URL if rel is manifest", () => {
+    const el = {
+      getAttribute: (name: string) =>
+        name === "rel" ? "manifest" : "/manifest.json"
+    };
+    extractor["linkHandler"](el as any);
+    expect(extractor["manifestUrl"]).toBe("/manifest.json");
+  });
+
+  it("addMimeTypes falls back to image/png for extensionless URLs", () => {
+    const urls = [
+      "https://example.com/icon." // no file extension
+    ];
+    const typed = extractor.addMimeTypes(urls);
+    expect(typed[0].mimeType).toBe("image/png"); // fallback behavior
+  });
+
+  it("addMimeTypes detects image/webp correctly", () => {
+    const urls = [
+      "https://example.com/icon.webp"
+    ];
+    const typed = extractor.addMimeTypes(urls);
+    expect(typed[0].mimeType).toBe("image/webp");
+  });
+  
+  it("metaHandler handles missing name attribute safely", () => {
+    const el = {
+      getAttribute: (name: string) =>
+        name === "content" ? "/tile.png" : null
+    };
+  
+    extractor["metaHandler"](el as any);
+    expect(extractor["icons"].length).toBe(0); // name is missing, nothing added
+  });
+
+  it("normalizeIcons skips icons that do not match http(s) or relative paths", () => {
+    extractor["icons"] = [
+      "/valid.png",
+      "https://example.com/ok.png",
+      "data:image/png;base64,iVBORw0KGgo=", // bad
+      "ftp://example.com/file.ico"          // bad
+    ];
+  
+    const result = extractor["normalizeIcons"]("https://example.com");
+  
+    expect(result).toEqual([
+      "https://example.com/valid.png",
+      "https://example.com/ok.png"
+    ]);
   });  
 });
