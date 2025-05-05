@@ -1,5 +1,13 @@
 # @iocium/favicon-extractor
 
+[![npm](https://img.shields.io/npm/v/@iocium/favicon-extractor)](https://www.npmjs.com/package/@iocium/favicon-extractor)
+[![build](https://github.com/iocium/favicon-extractor/actions/workflows/test.yml/badge.svg)](https://github.com/iocium/favicon-extractor/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/iocium/favicon-extractor/branch/main/graph/badge.svg)](https://codecov.io/gh/iocium/favicon-fetcher)
+[![npm downloads](https://img.shields.io/npm/dm/@iocium/favicon-extractor)](https://www.npmjs.com/package/@iocium/favicon-extractor)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@iocium/favicon-extractor)](https://bundlephobia.com/package/@iocium/favicon-extractor)
+[![types](https://img.shields.io/npm/types/@iocium/favicon-extractor)](https://www.npmjs.com/package/@iocium/favicon-extractor)
+[![license](https://img.shields.io/npm/l/@iocium/favicon-extractor)](https://github.com/iocium/favicon-extractor/blob/main/LICENSE)
+
 Extracts all relevant favicons, Apple touch icons, Android web app icons, and manifest-defined icons from a given URL.  
 Designed to be edge-compatible (Cloudflare Workers safe) and fully testable in Node.js.
 
